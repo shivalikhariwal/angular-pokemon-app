@@ -1,0 +1,37 @@
+<!-- Show Loading symbol-->
+<div class="container">
+  <div class="loading" *ngIf="!pokemonsLoaded">
+    <div class="d-flex justify-content-center">
+      <div class="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+  </div>
+
+  <div
+    *ngIf="pokemonsLoaded && pokemons"
+    style="text-align: center;"
+    class="card-group"
+  >
+    <div *ngFor="let pokemon of pokemons.results">
+      <div
+        class="pokemon-card card"
+        style="width: 20rem;"
+        *ngIf="pokemon.details"
+      >
+        <div class="background-image">
+          <img
+            mat-card-image
+            src="{{ pokemon.details.sprites.front_default }}"
+            alt="{{ pokemon.name }}"
+          />
+        </div>
+
+        <div class="card-body">
+          <div class="id">{{ pokemon.id }}</div>
+          <h5 class="card-title">{{ pokemon.name | titlecase }}</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
